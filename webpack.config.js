@@ -30,11 +30,21 @@ module.exports = {
   entry: "./src/index.js",
 
   output: {
-    filename: "[name].[chunkhash].js",
+    filename: "main.js",
     path: path.resolve(__dirname, "dist")
   },
 
-  plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "GDPR Plugin",
+      template: "./src/index.html",
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: false
+      }
+    })
+  ],
 
   module: {
     rules: [
