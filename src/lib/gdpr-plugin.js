@@ -8,7 +8,8 @@ const defaultOptions = {
   cancelText: "cancel",
   width: 600,
   height: 300,
-  overlay: true
+  overlay: true,
+  timeExpired: 604800 // 7 days in days
 };
 
 class GDPR {
@@ -72,6 +73,7 @@ class GDPR {
   submit = e => {
     this.setAgreement(true);
     this.destroyModal();
+    this.setCurrentTime();
   };
 
   cancel = e => {
@@ -83,10 +85,24 @@ class GDPR {
     localStorage.setItem("agreement", boolean);
   }
 
+  setCurrentTime() {
+    const currentTime = Math.round(Date.now() / 1000);
+    localStorage.setItem("agreement_time", currentTime);
+  }
+
+  checkTime() {
+    if (localStorage.getItem("agreement_time") === null) return false;
+    const agreementTime = Number(localStorage.getItem("agreement_time"));
+    const currentTime = Math.round(Date.now() / 1000);
+    return currentTime - agreementTime < this.options.timeExpired;
+  }
+
   init() {
+    const isTimeExpired = this.checkTime();
     if (
-      localStorage.getItem("agreement") !== null ||
-      localStorage.getItem("agreement") === "true"
+      localStorage.getItem("agreement") !== null &&
+      localStorage.getItem("agreement") === "true" &&
+      isTimeExpired
     ) {
       return;
     }
