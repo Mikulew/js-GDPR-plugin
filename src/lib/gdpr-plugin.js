@@ -51,7 +51,7 @@ class GDPR {
     submitButton.addEventListener("click", this.submit, false);
     cancelButton.addEventListener("click", this.cancel, false);
 
-    document.body.style.overflow = "hidden";
+    document.body.className = "gdpr";
 
     textContainer.appendChild(title);
     textContainer.appendChild(content);
@@ -65,7 +65,7 @@ class GDPR {
   }
 
   destroyModal() {
-    document.body.style.overflow = "visible";
+    document.body.className = document.body.className.replace("gdpr", "");
     document.body.removeChild(this.modal);
   }
 

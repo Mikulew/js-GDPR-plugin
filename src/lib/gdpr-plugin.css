@@ -1,3 +1,7 @@
+body.gdpr {
+  overflow: hidden;
+}
+
 .gdpr-container {
   position: fixed;
   top: 0;
