@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "GDPR Plugin",
   "scripts": {
     "build": "webpack --mode development",
     "start": "webpack-dev-server --mode development"
