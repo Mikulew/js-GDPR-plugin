@@ -1,0 +1,25 @@
+body.gdpr-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+body.gdpr-layout {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.gdpr-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: #fefefe;
+  border: #333333 solid 0px;
+  border-radius: 5px;
+}
