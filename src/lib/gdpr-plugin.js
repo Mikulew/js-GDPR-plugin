@@ -70,16 +70,26 @@ class GDPR {
   }
 
   submit = e => {
-    console.log(e);
+    this.setAgreement(true);
     this.destroyModal();
   };
 
   cancel = e => {
-    console.log(e);
+    this.setAgreement(false);
     this.destroyModal();
   };
 
+  setAgreement(boolean) {
+    localStorage.setItem("agreement", boolean);
+  }
+
   init() {
+    if (
+      localStorage.getItem("agreement") !== null ||
+      localStorage.getItem("agreement") === "true"
+    ) {
+      return;
+    }
     if (this.options.autoOpen) this.createModal();
     this.displayOptions();
   }
