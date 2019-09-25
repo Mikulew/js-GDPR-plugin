@@ -23,6 +23,7 @@ class GDPR {
 
   createModal() {
     this.modal = document.createElement("div");
+    const modalBox = document.createElement("div");
     const buttonContainer = document.createElement("div");
     const textContainer = document.createElement("div");
     const title = document.createElement("p");
@@ -30,9 +31,9 @@ class GDPR {
     const submitButton = document.createElement("button");
     const cancelButton = document.createElement("button");
 
-    document.body.className = "gdpr-container";
-    this.options.overlay ? (document.body.className += " gdpr-layout") : null;
-    this.modal.className = "gdpr-modal " + this.options.className;
+    this.modal.className = "gdpr-container";
+    this.options.overlay ? (this.modal.className += " gdpr-layout") : null;
+    modalBox.className = "gdpr-modal " + this.options.className;
     title.className = "gdpr-title";
     content.className = "gdpr-content";
     buttonContainer.className = "gdpr-button-container";
@@ -44,52 +45,39 @@ class GDPR {
     submitButton.innerText = this.options.submitText;
     cancelButton.innerText = this.options.cancelText;
 
-    this.modal.style.width = this.options.width + "px";
-    this.modal.style.height = this.options.height + "px";
+    modalBox.style.width = this.options.width + "px";
+    modalBox.style.height = this.options.height + "px";
 
     submitButton.addEventListener("click", this.submit, false);
     cancelButton.addEventListener("click", this.cancel, false);
+
+    document.body.style.overflow = "hidden";
 
     textContainer.appendChild(title);
     textContainer.appendChild(content);
     buttonContainer.appendChild(submitButton);
     buttonContainer.appendChild(cancelButton);
-    this.modal.appendChild(textContainer);
-    this.modal.appendChild(buttonContainer);
+    modalBox.appendChild(textContainer);
+    modalBox.appendChild(buttonContainer);
+    this.modal.appendChild(modalBox);
 
     document.body.appendChild(this.modal);
   }
 
   destroyModal() {
-    console.log("destroyModal");
+    document.body.style.overflow = "visible";
     document.body.removeChild(this.modal);
-    console.log("destroyed", this.modal);
   }
 
   submit = e => {
     console.log(e);
-    this.removeClass();
-    document.body.removeChild(this.modal);
+    this.destroyModal();
   };
 
   cancel = e => {
     console.log(e);
-    this.removeClass();
-    document.body.removeChild(this.modal);
+    this.destroyModal();
   };
-
-  removeClass() {
-    document.body.className = document.body.className.replace(
-      "gdpr-container",
-      ""
-    );
-    this.options.overlay
-      ? (document.body.className = document.body.className.replace(
-          "gdpr-layout",
-          ""
-        ))
-      : null;
-  }
 
   init() {
     if (this.options.autoOpen) this.createModal();
