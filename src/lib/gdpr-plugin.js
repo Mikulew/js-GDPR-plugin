@@ -18,8 +18,16 @@ class GDPR {
     this.options = Object.assign({}, defaultOptions, options);
   }
 
-  displayOptions() {
-    console.log(this.options);
+  init() {
+    const isTimeExpired = this.checkTime();
+    if (
+      localStorage.getItem("agreement") !== null &&
+      localStorage.getItem("agreement") === "true" &&
+      isTimeExpired
+    ) {
+      return;
+    }
+    if (this.options.autoOpen) this.createModal();
   }
 
   createModal() {
@@ -70,13 +78,13 @@ class GDPR {
     document.body.removeChild(this.modal);
   }
 
-  submit = e => {
+  submit = () => {
     this.setAgreement(true);
     this.destroyModal();
     this.setCurrentTime();
   };
 
-  cancel = e => {
+  cancel = () => {
     this.setAgreement(false);
     this.destroyModal();
   };
@@ -95,19 +103,6 @@ class GDPR {
     const agreementTime = Number(localStorage.getItem("agreement_time"));
     const currentTime = Math.round(Date.now() / 1000);
     return currentTime - agreementTime < this.options.timeExpired;
-  }
-
-  init() {
-    const isTimeExpired = this.checkTime();
-    if (
-      localStorage.getItem("agreement") !== null &&
-      localStorage.getItem("agreement") === "true" &&
-      isTimeExpired
-    ) {
-      return;
-    }
-    if (this.options.autoOpen) this.createModal();
-    this.displayOptions();
   }
 }
 
