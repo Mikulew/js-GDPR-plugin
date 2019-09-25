@@ -21,10 +21,6 @@ class GDPR {
     console.log(this.options);
   }
 
-  open() {
-    this.createModal();
-  }
-
   createModal() {
     this.modal = document.createElement("div");
     const buttonContainer = document.createElement("div");
@@ -51,6 +47,9 @@ class GDPR {
     this.modal.style.width = this.options.width + "px";
     this.modal.style.height = this.options.height + "px";
 
+    submitButton.addEventListener("click", this.submit, false);
+    cancelButton.addEventListener("click", this.cancel, false);
+
     textContainer.appendChild(title);
     textContainer.appendChild(content);
     buttonContainer.appendChild(submitButton);
@@ -61,8 +60,39 @@ class GDPR {
     document.body.appendChild(this.modal);
   }
 
+  destroyModal() {
+    console.log("destroyModal");
+    document.body.removeChild(this.modal);
+    console.log("destroyed", this.modal);
+  }
+
+  submit = e => {
+    console.log(e);
+    this.removeClass();
+    document.body.removeChild(this.modal);
+  };
+
+  cancel = e => {
+    console.log(e);
+    this.removeClass();
+    document.body.removeChild(this.modal);
+  };
+
+  removeClass() {
+    document.body.className = document.body.className.replace(
+      "gdpr-container",
+      ""
+    );
+    this.options.overlay
+      ? (document.body.className = document.body.className.replace(
+          "gdpr-layout",
+          ""
+        ))
+      : null;
+  }
+
   init() {
-    if (this.options.autoOpen) this.open();
+    if (this.options.autoOpen) this.createModal();
     this.displayOptions();
   }
 }
