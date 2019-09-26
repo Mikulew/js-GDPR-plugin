@@ -20,11 +20,7 @@ class GDPR {
 
   init() {
     const isTimeExpired = this.checkTime();
-    if (
-      localStorage.getItem("agreement") !== null &&
-      localStorage.getItem("agreement") === "true" &&
-      isTimeExpired
-    ) {
+    if (localStorage.getItem("agreement") !== null && isTimeExpired) {
       return;
     }
     if (this.options.autoOpen) this.createModal();
@@ -87,6 +83,7 @@ class GDPR {
   cancel = () => {
     this.setAgreement(false);
     this.destroyModal();
+    this.setCurrentTime();
   };
 
   setAgreement(boolean) {
