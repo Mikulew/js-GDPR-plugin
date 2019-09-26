@@ -3,6 +3,8 @@ const common = require("./webpack.common");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("tester-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
@@ -16,6 +18,7 @@ module.exports = merge(common, {
       template: "./src/index.html",
       inject: true,
       minify: {
+        removeAttributeQuotes: true,
         removeComments: true,
         collapseWhitespace: true
       }
@@ -24,5 +27,8 @@ module.exports = merge(common, {
       filename: "[name].[hash].css",
       chunkFilename: "[id].[hash].css"
     })
-  ]
+  ],
+  optimization: {
+    minimizer: [new OptimizeCssAssetsPlugin(), new TerserPlugin()]
+  }
 });

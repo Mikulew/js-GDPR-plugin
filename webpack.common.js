@@ -2,9 +2,7 @@ const { resolve } = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: {
-    app: "./src/index.js"
-  },
+  entry: "./src/index.js",
   module: {
     rules: [
       {
@@ -29,12 +27,7 @@ module.exports = {
       {
         test: [/.css$|.scss$/],
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV === "development"
-            }
-          },
+          MiniCssExtractPlugin.loader,
           "css-loader",
           "sass-loader",
           "postcss-loader"
