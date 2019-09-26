@@ -1,4 +1,4 @@
-const path = require("path");
+const { resolve } = require("path");
 const webpack = require("webpack");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -7,11 +7,12 @@ const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
-
+  entry: {
+    app: "./src/index.js"
+  },
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist")
+    path: resolve(__dirname, "dist")
   },
 
   plugins: [
@@ -34,11 +35,14 @@ module.exports = {
     rules: [
       {
         test: /.(js|jsx)$/,
-        include: [path.resolve(__dirname, "src")],
+        include: [resolve(__dirname, "src")],
         loader: "babel-loader",
 
         options: {
-          plugins: ["syntax-dynamic-import"],
+          plugins: [
+            "syntax-dynamic-import",
+            "@babel/plugin-proposal-class-properties"
+          ],
 
           presets: [
             [
@@ -47,8 +51,7 @@ module.exports = {
                 modules: false
               }
             ]
-          ],
-          plugins: ["@babel/plugin-proposal-class-properties"]
+          ]
         }
       },
       {

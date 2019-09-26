@@ -2,9 +2,10 @@
   "version": "1.0.0",
   "description": "GDPR Plugin",
   "scripts": {
+    "start": "webpack-dev-server --mode development",
     "prebuild": "npm run clean",
     "build": "webpack --mode development",
-    "start": "webpack-dev-server --mode development",
+    "prod": "npm run build -- -p --mode production",
     "clean": "rimraf dist"
   },
   "devDependencies": {
