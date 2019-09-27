@@ -99,3 +99,13 @@ Set overlay if modal appears. Default value: true.
 ### timeExpired
 
 Set time in seconds when modal will be appear after close modal. Default value: 604800 (7 days in seconds)
+
+## Methods
+
+### init()
+
+Use this method if autoOpen is true. Modal will appear when browser loads.
+
+### openModal()
+
+Use this method if autoOpen is false. Modal will appear when this method calls.

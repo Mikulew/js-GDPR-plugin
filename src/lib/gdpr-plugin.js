@@ -24,10 +24,10 @@ class GDPR {
     if (localStorage.getItem("agreement") !== null && isTimeExpired) {
       return;
     }
-    if (this.options.autoOpen) this.createModal();
+    if (this.options.autoOpen) this.openModal();
   }
 
-  createModal() {
+  openModal() {
     this.modal = document.createElement("div");
     const modalBox = document.createElement("div");
     const buttonContainer = document.createElement("div");
@@ -70,20 +70,20 @@ class GDPR {
     document.body.appendChild(this.modal);
   }
 
-  destroyModal() {
+  closeModal() {
     document.body.className = document.body.className.replace("gdpr", "");
     document.body.removeChild(this.modal);
   }
 
   submit = () => {
     this.setAgreement(true);
-    this.destroyModal();
+    this.closeModal();
     this.setCurrentTime();
   };
 
   cancel = () => {
     this.setAgreement(false);
-    this.destroyModal();
+    this.closeModal();
     this.setCurrentTime();
   };
 
