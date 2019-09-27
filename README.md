@@ -12,7 +12,7 @@ npm install
 npm run start
 ```
 
-## Build Setup (development)
+## Build setup (development)
 
 ```bash
 # install dependencies
@@ -36,4 +36,11 @@ npm run prod
 
 # serve project in the "dist" directory
 npm run server
+```
+
+## Demount setup
+
+```bash
+# remove the "dist" directory
+npm run clean
 ```
