@@ -51,9 +51,20 @@ npm run clean
 
 ```javascript
 import GDPR from "./lib/gdpr-plugin";
+
+/* if autoOpen is true (default value) */
 new GDPR({
   /* options */
 }).init();
+
+/* if autoOpen is false */
+const GDPRPlugin = new GDPR({
+  /* options */
+});
+
+element.addEventListener("click", function() {
+  GDPRPlugin.openModal();
+});
 ```
 
 ## Options
