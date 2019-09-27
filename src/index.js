@@ -1,6 +1,6 @@
 import "./styles/main.scss";
-import "./lib/gdpr-plugin.css";
-import GDPRBox from "./lib/gdpr-plugin";
+import "./lib/gdpr-plugin.min.css";
+import GDPRBox from "./lib/gdpr-plugin.min";
 
 const DAY_IN_SECONDS = 86400;
 
