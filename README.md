@@ -1,8 +1,10 @@
 # GDPR plugin
 
+## Setup
+
 > To run this project, install it locally using npm
 
-## Development server (compiles and hot-reloads)
+### Development server (compiles and hot-reloads)
 
 ```bash
 # install dependencies
@@ -12,7 +14,7 @@ npm install
 npm run start
 ```
 
-## Build setup (development)
+### Build setup (development)
 
 ```bash
 # install dependencies
@@ -25,7 +27,7 @@ npm run build
 npm run server
 ```
 
-## Production server setup
+### Production server setup
 
 ```bash
 # install dependencies
@@ -38,9 +40,62 @@ npm run prod
 npm run server
 ```
 
-## Demount setup
+### Demount setup
 
 ```bash
 # remove the "dist" directory
 npm run clean
 ```
+
+## Usage
+
+```javascript
+import GDPR from "./lib/gdpr-plugin";
+new GDPR({
+  /* options */
+}).init();
+```
+
+## Options
+
+### autoOpen
+
+Open modal automatically. Default value: true.
+
+### className
+
+Set class to GDPR modal. Default value: "".
+
+### titleText
+
+Set title to modal. Default value: "GDPR consent".
+
+### contentText
+
+Set text to modal. Default value:
+
+> "This web site complies with the UK Privacy and Electronic Communications Regulations and the UK DPA 2018 in its understanding of consent as it applies to the regulations. We only deploy by default essential cookies, we list and give you the user the option to opt into cookie deployment for other categories of cookies if you expand the 'Cookie settings' link. By clicking the 'Accept cookie settings' button you agree to the default privacy settings of only essential cookies, if you select do not deploy any cookies then none will be deployed. Your settings and options can only be remembered with the minimum essential cookies deployed."
+
+### submitText
+
+Set text to submit button. Default value: "submit".
+
+### cancelText
+
+Set text to cancel button. Default value: "cancel".
+
+### width
+
+Set width to modal. Default value: 600.
+
+### height
+
+Set height to modal. Default value: 300.
+
+### overlay
+
+Set overlay if modal appears. Default value: true.
+
+### timeExpired
+
+Set time in seconds when modal will be appear after close modal. Default value: 604800 (7 days in seconds)
