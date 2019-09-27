@@ -1,3 +1,4 @@
+const WEEK_IN_SECONDS = 604800;
 const defaultOptions = {
   autoOpen: true,
   className: "",
@@ -9,7 +10,7 @@ const defaultOptions = {
   width: 600,
   height: 300,
   overlay: true,
-  timeExpired: 604800 // 7 days in days
+  timeExpired: WEEK_IN_SECONDS
 };
 
 class GDPR {
