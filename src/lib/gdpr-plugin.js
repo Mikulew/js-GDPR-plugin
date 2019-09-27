@@ -1,7 +1,7 @@
 const WEEK_IN_SECONDS = 604800;
 const defaultOptions = {
   autoOpen: true,
-  className: "",
+  className: "gdpr-modal",
   titleText: "GDPR consent",
   contentText:
     "This web site complies with the UK Privacy and Electronic Communications Regulations and the UK DPA 2018 in its understanding of consent as it applies to the regulations. We only deploy by default essential cookies, we list and give you the user the option to opt into cookie deployment for other categories of cookies if you expand the 'Cookie settings' link. By clicking the 'Accept cookie settings' button you agree to the default privacy settings of only essential cookies, if you select do not deploy any cookies then none will be deployed. Your settings and options can only be remembered with the minimum essential cookies deployed.",
@@ -35,14 +35,14 @@ class GDPR {
     const submitButton = document.createElement("button");
     const cancelButton = document.createElement("button");
 
-    this.modal.className = "gdpr-container";
-    this.options.overlay ? (this.modal.className += " gdpr-layout") : null;
-    modalBox.className = "gdpr-modal " + this.options.className;
-    title.className = "gdpr-title";
-    content.className = "gdpr-content";
-    buttonContainer.className = "gdpr-button-container";
-    submitButton.className = "gdpr-button gdpr-button__submit";
-    cancelButton.className = "gdpr-button gdpr-button__cancel";
+    this.modal.classList.add("gdpr-container");
+    this.options.overlay ? this.modal.classList.add("gdpr-layout") : null;
+    modalBox.classList.add("gdpr-modal", this.options.className);
+    title.classList.add("gdpr-title");
+    content.classList.add("gdpr-content");
+    buttonContainer.classList.add("gdpr-button-container");
+    submitButton.classList.add("gdpr-button", "gdpr-button__submit");
+    cancelButton.classList.add("gdpr-button", "gdpr-button__cancel");
 
     title.innerText = this.options.titleText;
     content.innerText = this.options.contentText;
@@ -55,8 +55,6 @@ class GDPR {
     submitButton.addEventListener("click", this.submit, false);
     cancelButton.addEventListener("click", this.cancel, false);
 
-    document.body.classList.add("gdpr");
-
     textContainer.appendChild(title);
     textContainer.appendChild(content);
     buttonContainer.appendChild(submitButton);
@@ -65,6 +63,7 @@ class GDPR {
     modalBox.appendChild(buttonContainer);
     this.modal.appendChild(modalBox);
 
+    document.body.classList.add("gdpr");
     document.body.appendChild(this.modal);
   }
 
