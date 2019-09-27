@@ -10,7 +10,7 @@ const defaultOptions = {
   width: 600,
   height: 300,
   overlay: true,
-  timeExpired: WEEK_IN_SECONDS
+  expirationTime: WEEK_IN_SECONDS
 };
 
 class GDPR {
@@ -21,9 +21,7 @@ class GDPR {
 
   init() {
     const isTimeExpired = this.checkTime();
-    if (localStorage.getItem("agreement") !== null && isTimeExpired) {
-      return;
-    }
+    if (localStorage.getItem("agreement") !== null && isTimeExpired) return;
     if (this.options.autoOpen) this.openModal();
   }
 
@@ -57,7 +55,7 @@ class GDPR {
     submitButton.addEventListener("click", this.submit, false);
     cancelButton.addEventListener("click", this.cancel, false);
 
-    document.body.className = "gdpr";
+    document.body.classList.add("gdpr");
 
     textContainer.appendChild(title);
     textContainer.appendChild(content);
@@ -71,7 +69,7 @@ class GDPR {
   }
 
   closeModal() {
-    document.body.className = document.body.className.replace("gdpr", "");
+    document.body.classList.remove("gdpr");
     document.body.removeChild(this.modal);
   }
 
@@ -100,7 +98,7 @@ class GDPR {
     if (localStorage.getItem("agreement_time") === null) return false;
     const agreementTime = Number(localStorage.getItem("agreement_time"));
     const currentTime = Math.round(Date.now() / 1000);
-    return currentTime - agreementTime < this.options.timeExpired;
+    return currentTime - agreementTime < this.options.expirationTime;
   }
 }
 

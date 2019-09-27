@@ -50,20 +50,20 @@ npm run clean
 ## Usage
 
 ```javascript
-import GDPR from "./lib/gdpr-plugin";
+import GDPRBox from "./lib/gdpr-plugin";
 
 /* if autoOpen is true (default value) */
-new GDPR({
+new GDPRBox({
   /* options */
 }).init();
 
 /* if autoOpen is false */
-const GDPRPlugin = new GDPR({
+const gdprBox = new GDPRBox({
   /* options */
 });
 
 element.addEventListener("click", function() {
-  GDPRPlugin.openModal();
+  gdprBox.openModal();
 });
 ```
 
@@ -107,7 +107,7 @@ Set height to modal. Default value: 300.
 
 Set overlay if modal appears. Default value: true.
 
-### timeExpired
+### expirationTime
 
 Set time in seconds when modal will be appear after close modal. Default value: 604800 (7 days in seconds)
 
