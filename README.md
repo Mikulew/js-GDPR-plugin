@@ -95,7 +95,7 @@ Open modal automatically. Default value: `true`.
 
 ### `className`
 
-Set class to GDPR modal. Default value: `"".
+Set class to GDPR modal. Default value: `"gdpr-modal"`.
 
 ### `titleText`
 
@@ -132,10 +132,10 @@ Set time in seconds when modal will be appear after close modal. Default value: 
 
 ## Methods
 
-### ```init()```
+### `init()`
 
 Use this method if autoOpen is true. Modal will appear when browser loads.
 
-### ```openModal()```
+### `openModal()`
 
 Use this method if autoOpen is false. Modal will appear when this method calls.
