@@ -18,7 +18,7 @@ GDPR plugin is a project in which an example of a pop-up modal to accept or canc
 * SASS/CSS
 * JavaScript (ES6)
 * Webpack
-* NPM
+* npm
 
 ## Setup
 
